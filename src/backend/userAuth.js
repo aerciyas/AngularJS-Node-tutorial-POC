@@ -3,15 +3,15 @@ var bcrypt = require('bcryptjs'),
     mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'node'
+    host: 'us-cdbr-iron-east-02.cleardb.net',
+    user: 'b341eb1890fae6',
+    password: '6ddac6d3',
+    database: 'heroku_81ed279db9f7798'
 });
 
 function authenticateUser(username, password, deferred)
 {
-    connection.query('SELECT * FROM localUsers WHERE user = ?',
+    connection.query('SELECT * FROM local_user WHERE username = ?',
         username,
         function(err, results)
         {
@@ -22,12 +22,12 @@ function authenticateUser(username, password, deferred)
             }
             else if(results.length == 0)
             {
-                console.log("Could not find user in db for signin");
+                console.log("Could not find username in db for signin");
                 deferred.resolve(false);
             }
             else
             {
-                connection.query('SELECT password FROM localUsers WHERE user = ?',
+                connection.query('SELECT password FROM local_user WHERE username = ?',
                     username,
                     function(err, results) {
                         if(err)
@@ -73,7 +73,7 @@ function signUpUser(username, password, deferred)
         "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
     };
 
-    connection.query('SELECT * FROM localUsers WHERE user = ?', //query check if user exists, if no add
+    connection.query('SELECT * FROM local_user WHERE username = ?', //query check if user exists, if no add
         username,
         function(err, results){
             if(err)
@@ -85,7 +85,7 @@ function signUpUser(username, password, deferred)
             {
                 console.log('Username is free for use');
 
-                var insertUserQuery = 'INSERT INTO localUsers(user, password) VALUES (?)'; //query to put user in database
+                var insertUserQuery = 'INSERT INTO local_user(username, password) VALUES (?)'; //query to put user in database
                 var hashedPassword = bcrypt.hashSync(password, 8);
                 var userCredentials = [[username, hashedPassword]];
                 connection.query(
