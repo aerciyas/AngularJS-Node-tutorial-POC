@@ -8,20 +8,15 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     morgan = require('morgan'),             // log requests to the console (express4)
-    userAuth = require('./userAuth.js'); //userAuth file contains our helper functions for our Passport and database work
+    userAuth = require('./userAuth.js'), //userAuth file contains our helper functions for our Passport and database work
+    cors = require('cors');
 
 exports.api =  function() {
 
     var app = express();
 
     //================CORS==================
-    app.use(function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-        res.header('Access-Control-Allow-Credentials', true);
-        next();
-    });
+    app.use(cors());
 
     //===============PASSPORT===============
     // Passport session setup.
