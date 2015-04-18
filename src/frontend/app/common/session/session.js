@@ -103,52 +103,58 @@
         {
             return $http
                 .post(API_URL + '/login', credentials)
-                .then(
-                function success(response) {
-                    return response;
-                },
+                .success(
+                function success(response)
+                    {
+                        return response;
+                    })
+                .error(
                 function failure(response)
-                {
-                    var educationalMessage = 'Educational: Maybe could use AngularJs interceptors to handle http response codes with more care.' +
-                        'But for now will use angular constants to handle the statuses. ';
-                    alert(response.status + ' ' + response.statusText);
-                    console.log(educationalMessage);
-                    return null;
-                });
+                    {
+                        var educationalMessage = 'Educational: Maybe could use AngularJs interceptors to handle http response codes with more care.' +
+                            'But for now will use angular constants to handle the statuses. ';
+                        alert(response.status + ' ' + response.statusText);
+                        console.log(educationalMessage);
+                        return null;
+                    });
         };
 
         sessionService.signUpUser = function(newCredentials)
         {
             return $http
                 .post(API_URL + '/signUp', newCredentials)
-                .then(
+                .success(
                 function success(response) {
                     if(response.data.error)
                     {
                         alert(response.data.error);
                     }
                     return response;
-                },
+                })
+                .error(
                 function failure(response)
-                {
-                    alert('Failed to create user, http status is: ' + response.status + ' ' + response.statusText);
-                    return null;
-                });
+                    {
+                        alert('Failed to create user, http status is: ' + response.status + ' ' + response.statusText);
+                        return null;
+                    }
+            );
         };
 
         sessionService.logout = function(user)
         {
             return $http
                 .get(API_URL + '/logout', user)
-                .then(
-                function success(response) {
-                    return response;
-                },
+                .success(
+                function success(response)
+                    {
+                        return response;
+                    })
+                .error(
                 function failure(response)
-                {
-                    alert(response.status + ' ' + response.statusText);
-                    return null;
-                });
+                    {
+                        alert(response.status + ' ' + response.statusText);
+                        return null;
+                    });
         };
 
         return sessionService;
