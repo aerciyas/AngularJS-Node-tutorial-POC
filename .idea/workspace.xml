@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d21834f5-95b2-4f8c-9ec2-7c4653de6e6a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backend/api.js" afterPath="$PROJECT_DIR$/src/backend/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/app/eggly-app.start.js" afterPath="$PROJECT_DIR$/src/frontend/app/eggly-app.start.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cors/package.json" afterPath="$PROJECT_DIR$/node_modules/cors/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dragonrating.iws" />
@@ -29,8 +26,8 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/backend/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6659619">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.12875536">
+              <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -50,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/frontend/app/eggly-app.start.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -59,8 +56,18 @@
       <file leaf-file-name="userAuth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend/userAuth.js">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.074074">
+              <caret line="80" column="92" selection-start-line="80" selection-start-column="92" selection-end-line="80" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/frontend/app/signin/signin.js">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,8 +76,8 @@
       <file leaf-file-name="session.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/frontend/app/common/session/session.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-71.666664">
-              <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="124" column="58" selection-start-line="124" selection-start-column="58" selection-end-line="124" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -98,11 +105,12 @@
       <list>
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/src/backend/server.js" />
-        <option value="$PROJECT_DIR$/src/backend/userAuth.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/node_modules/cors/package.json" />
-        <option value="$PROJECT_DIR$/src/frontend/app/eggly-app.start.js" />
         <option value="$PROJECT_DIR$/src/backend/api.js" />
+        <option value="$PROJECT_DIR$/src/frontend/app/eggly-app.start.js" />
+        <option value="$PROJECT_DIR$/src/frontend/app/common/session/session.js" />
+        <option value="$PROJECT_DIR$/src/backend/userAuth.js" />
       </list>
     </option>
   </component>
@@ -114,7 +122,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
+    <option name="x" value="7" />
     <option name="y" value="23" />
     <option name="width" value="1220" />
     <option name="height" value="805" />
@@ -466,15 +474,39 @@
       <option name="project" value="LOCAL" />
       <updated>1429331507351</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Url..cors.">
+      <created>1429333960884</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1429333960884</updated>
+    </task>
+    <task id="LOCAL-00016" summary="http's'">
+      <created>1429334156813</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1429334156813</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updating auth methods for better logging.">
+      <created>1429335123161</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1429335123161</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Adding success error promise methods.">
+      <created>1429336568884</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1429336568884</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="23" width="1220" height="805" extended-state="0" />
-    <editor active="false" />
+    <frame x="7" y="23" width="1220" height="805" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880434" sideWeight="0.6295082" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32880434" sideWeight="0.62540984" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -482,8 +514,8 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31929347" sideWeight="0.5360656" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31929347" sideWeight="0.46393442" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32880434" sideWeight="0.37459016" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2785326" sideWeight="0.46393442" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -518,7 +550,11 @@
     <MESSAGE value="Trying cors another way." />
     <MESSAGE value="Adding http to API_URL." />
     <MESSAGE value="Setting baseUrl through express." />
-    <option name="LAST_COMMIT_MESSAGE" value="Setting baseUrl through express." />
+    <MESSAGE value="Url..cors." />
+    <MESSAGE value="http's'" />
+    <MESSAGE value="Updating auth methods for better logging." />
+    <MESSAGE value="Adding success error promise methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding success error promise methods." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -813,22 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/frontend/app/common/session/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-71.666664">
-          <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/userAuth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.4166665">
@@ -837,18 +857,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/bower_components/jquery/dist/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33200794">
+          <caret line="3231" column="28" selection-start-line="3231" selection-start-column="28" selection-end-line="3231" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/bower_components/jquery/src/deferred.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33200794">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/app/common/session/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="58" selection-start-line="124" selection-start-column="58" selection-end-line="124" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/userAuth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.074074">
+          <caret line="80" column="92" selection-start-line="80" selection-start-column="92" selection-end-line="80" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/app/signin/signin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/frontend/app/eggly-app.start.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6659619">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.12875536">
+          <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
           <folding />
         </state>
       </provider>
