@@ -1,2 +1,3 @@
 # dragonrating
-Eventually, will be a social network for establishing a rating system amongst various games. 
+
+Will be updated soon with local setup instuctions. 
