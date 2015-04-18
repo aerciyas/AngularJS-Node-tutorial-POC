@@ -22,8 +22,8 @@ function authenticateUser(username, password, deferred)
             }
             else if(results.length == 0)
             {
-                console.log("Could not find username in db for signin");
-                deferred.resolve(false);
+                console.log("Could not find username in db for signin.");
+                deferred.reject(new Error('Could not find username.'));
             }
             else
             {
@@ -53,7 +53,7 @@ function authenticateUser(username, password, deferred)
                             else
                             {
                                 console.log("Passwords don't match!");
-                                deferred.resolve(false);
+                                deferred.reject(new Error("Passwords don't match!"));
                             }
                         }
                     });
@@ -66,20 +66,13 @@ function authenticateUser(username, password, deferred)
 
 function signUpUser(username, password, deferred)
 {
-    var hash = bcrypt.hashSync(password, 8);
-    var user = {
-        "username": username,
-        "password": hash,
-        "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
-    };
-
     connection.query('SELECT * FROM local_user WHERE username = ?', //query check if user exists, if no add
         username,
         function(err, results){
             if(err)
             {
                 console.log("This is weird, no error was expected. A user lookup query is wrong, or possibly the db isn't up and running.");
-                deferred.resolve(false);
+                deferred.reject(new Error(err.message));
             }
             if(results.length == 0)
             {
@@ -99,6 +92,12 @@ function signUpUser(username, password, deferred)
                         }
                         else//success
                         {
+                            var hash = bcrypt.hashSync(password, 8);
+                            var user = {
+                                "username": username,
+                                "password": hash,
+                                "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
+                            };
                             console.log("USER: " + user);
                             deferred.resolve(user);
                         }
@@ -106,8 +105,8 @@ function signUpUser(username, password, deferred)
             }
             else
             {
-                console.log('username already exists');
-                deferred.resolve(false); //username already exists
+                console.log('Username already exists.');
+                deferred.reject(new Error('Username already exists.')); //username already exists
             }
         });
 }
