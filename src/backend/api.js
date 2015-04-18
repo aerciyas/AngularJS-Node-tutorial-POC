@@ -16,6 +16,7 @@ exports.api =  function() {
 
     var app = express();
 
+    app.setBaseUrl("/");
 
     //===============PASSPORT===============
     // Passport session setup.

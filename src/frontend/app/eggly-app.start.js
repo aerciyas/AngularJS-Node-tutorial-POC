@@ -9,7 +9,7 @@
         'eggly.session'
     ]);
 
-        egglyApp.constant('API_URL', 'http://mysterious-earth-1808.herokuapp.com');
+        egglyApp.constant('API_URL', '');
 
         egglyApp.config(function ($stateProvider, $urlRouterProvider) {
                 $stateProvider
