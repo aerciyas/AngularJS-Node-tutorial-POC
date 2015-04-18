@@ -1,5 +1,4 @@
 var express = require('express'),
-    exphbs = require('express-handlebars'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
@@ -15,8 +14,6 @@ var express = require('express'),
 exports.api =  function() {
 
     var app = express();
-
-    app.setBaseUrl("/");
 
     //===============PASSPORT===============
     // Passport session setup.
@@ -97,15 +94,13 @@ exports.api =  function() {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
-    // Configure express to use handlebars templates
-    var hbs = exphbs.create({
-        defaultLayout: 'main' //we will be creating this layout shortly
-    });
-    app.engine('handlebars', hbs.engine);
-    app.set('view engine', 'handlebars');
-
     //===============ROUTES===============
 
+    //app.use(function(req, res, next) {
+    //    res.header("Access-Control-Allow-Origin", "*");
+    //    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //    next();
+    //});
 
     //displays homepage
     app.get('/', function (request, response) {
