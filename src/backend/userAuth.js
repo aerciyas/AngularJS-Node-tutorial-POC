@@ -39,7 +39,8 @@ function authenticateUser(username, password, deferred)
                         {
                             console.log("Found user!");
                             var hash = results[0].password;
-                            console.log(hash);
+                            console.log('hash: ' + hash);
+                            console.log('password: ' + password);
                             console.log(bcrypt.compareSync(password, hash));
                             if (bcrypt.compareSync(password, hash))
                             {

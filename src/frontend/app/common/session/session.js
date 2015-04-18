@@ -56,11 +56,11 @@
 
             SessionService.signUpUser(newCredentials)
                 .then(
-                function success(response)
+                function success(user)
                 {
-                    if(!response.data.error)
+                    if(user.data)
                     {
-                        $rootScope.setCurrentUser(response.data);
+                        $rootScope.setCurrentUser(user.data);
                         $state.go('eggly.categories');
                     }
                 },
@@ -125,10 +125,6 @@
                 .post(API_URL + '/signUp', newCredentials)
                 .success(
                 function success(response) {
-                    if(response.data.error)
-                    {
-                        alert(response.data.error);
-                    }
                     return response;
                 })
                 .error(
