@@ -123,7 +123,7 @@
                 .error(
                 function failure(data, status)
                 {
-                    alert('Oh no! We like you too much.. Could not log out.');
+                    alert('Oh no! We like you too much.. Could not log you out.');
                     console.log('Could not log out, http status: ' + status);
                 });
         };
