@@ -37,7 +37,7 @@ Local setup instructions:
    project. 
    ___________________________________________________
    
-   CREATE TABLE `<your_schema_name`.`local_user` (
+   CREATE TABLE `<your_schema_name>`.`local_user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) NOT NULL,
   `password` VARCHAR(225) NOT NULL,
