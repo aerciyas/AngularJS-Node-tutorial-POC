@@ -1,6 +1,6 @@
 # dragonrating
 
-Will be updated soon with local setup instuctions. 
+Thank you for visiting! Follow below for local setup! 
 
 Local setup instructions:
 
