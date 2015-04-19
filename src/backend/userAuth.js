@@ -13,7 +13,7 @@ var unexpectedErrorMessage = "This is weird, no error was expected. A user query
 
 function authenticateUser(username, password, deferred)
 {
-    connection.query('SELECT * FROM local_user WHERE username = ?',
+    connection.query('SELECT username FROM local_user WHERE username = ?',
         username,
         function(err, results)
         {
@@ -69,7 +69,7 @@ function authenticateUser(username, password, deferred)
 
 function signUpUser(username, password, deferred)
 {
-    connection.query('SELECT * FROM local_user WHERE username = ?', //query check if user exists, if no add
+    connection.query('SELECT username FROM local_user WHERE username = ?', //query check if user exists, if no add
         username,
         function(err, results){
             if(err)
