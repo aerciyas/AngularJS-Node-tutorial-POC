@@ -9,6 +9,8 @@ var connection = mysql.createConnection({
     database: 'heroku_81ed279db9f7798'
 });
 
+var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
+
 function authenticateUser(username, password, deferred)
 {
     connection.query('SELECT * FROM local_user WHERE username = ?',
@@ -17,13 +19,13 @@ function authenticateUser(username, password, deferred)
         {
             if(err)
             {
-                console.log("SELECT FAIL:" + err.message);
-                deferred.reject(new Error(err.message));
+                console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
+                deferred.resolve(false);
             }
             else if(results.length == 0)
             {
                 console.log("Could not find username in db for signin.");
-                deferred.reject(new Error('Could not find username.'));
+                deferred.resolve(false);
             }
             else
             {
@@ -32,8 +34,8 @@ function authenticateUser(username, password, deferred)
                     function(err, results) {
                         if(err)
                         {
-                            console.log("SELECT FAIL:" + err.message);
-                            deferred.reject(new Error(err.message));
+                            console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
+                            deferred.resolve(false);
                         }
                         else
                         {
@@ -54,7 +56,7 @@ function authenticateUser(username, password, deferred)
                             else
                             {
                                 console.log("Passwords don't match!");
-                                deferred.reject(new Error("Passwords don't match!"));
+                                deferred.resolve(false);
                             }
                         }
                     });
@@ -72,8 +74,8 @@ function signUpUser(username, password, deferred)
         function(err, results){
             if(err)
             {
-                console.log("This is weird, no error was expected. A user lookup query is wrong, or possibly the db isn't up and running.");
-                deferred.reject(new Error(err.message));
+                console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
+                deferred.resolve(false);
             }
             if(results.length == 0)
             {
@@ -88,8 +90,8 @@ function signUpUser(username, password, deferred)
                     function(err){
                         if(err)
                         {
-                            console.log("PUT FAIL:" + err.message);
-                            deferred.reject(new Error(err.message));
+                            console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
+                            deferred.resolve(false);
                         }
                         else//success
                         {
@@ -107,7 +109,7 @@ function signUpUser(username, password, deferred)
             else
             {
                 console.log('Username already exists.');
-                deferred.reject(new Error('Username already exists.')); //username already exists
+                deferred.resolve(false);
             }
         });
 }
