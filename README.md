@@ -4,7 +4,7 @@ Thank you for visiting! Follow below for local setup!
 
 Local setup instructions:
 
-1) Download zip or clone this repository to your favorite folder in your system. (If not familiar with github go to https://github.com/aerciyas/dragonrating and scroll to the lower right-hand side of the page). 
+1) Download zip or clone this repository to your favorite folder in your system. 
 
 2) In the terminal, go to root directory of the project and run 'npm install'. This should add content to a package called node_modules in the root directory of the project. 
 
