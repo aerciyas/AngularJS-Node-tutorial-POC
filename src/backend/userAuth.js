@@ -3,10 +3,10 @@ var bcrypt = require('bcryptjs'),
     mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'node'
+    host: 'your host name',
+    user: 'your user name',
+    password: 'your password',
+    database: 'your database name'
 });
 
 var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
