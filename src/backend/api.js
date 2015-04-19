@@ -8,7 +8,7 @@ var express = require('express'),
     LocalStrategy = require('passport-local'),
     morgan = require('morgan'),             // log requests to the console (express4)
     userAuth = require('./userAuth.js'), //userAuth file contains our helper functions for our Passport and database work
-    cors = require('cors');
+    cors = require('cors'); // cross origin resource module to allow api calls from browser (isn't intended as cross scripting security, need something additional for that)
 
 
 exports.api =  function() {
@@ -51,7 +51,6 @@ exports.api =  function() {
     ));
 
      //Use the LocalStrategy within Passport to register/"signup" users.
-
      passport.use('local-signup', new LocalStrategy(
          {passReqToCallback : true}, //allows us to pass back the request to the callback
          function(request, username, password, done)
@@ -72,7 +71,7 @@ exports.api =  function() {
                              return done(null, user);
                          }
                     })
-                     .fail(function (err){ //TODO: For hangling promises, i see both this way ano the other way of handling them..
+                     .fail(function (err){
                      console.log(err.body);
                      });
          }

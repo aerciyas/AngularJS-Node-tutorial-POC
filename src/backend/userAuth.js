@@ -48,8 +48,7 @@ function authenticateUser(username, password, deferred)
                             {
                                 var user = {
                                     "username": username,
-                                    "password": hash,
-                                    "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
+                                    "password": hash
                                 };
                                 deferred.resolve(user);
                             }
@@ -98,8 +97,7 @@ function signUpUser(username, password, deferred)
                             var hash = bcrypt.hashSync(password, 8);
                             var user = {
                                 "username": username,
-                                "password": hash,
-                                "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
+                                "password": hash
                             };
                             console.log("USER: " + user);
                             deferred.resolve(user);
