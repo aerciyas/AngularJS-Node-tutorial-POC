@@ -13,22 +13,17 @@
         {
             SessionService.getSession()
                 .then(
-                function success(user)
+                function success(response)
                 {
-                    if(user.data)
+                    if(response.data)
                     {
-                        $rootScope.setCurrentUser(user.data);
+                        $rootScope.setCurrentUser(response.data);
                     }
                     else
                     {
                         $rootScope.setCurrentUser(null);
                     }
-                },
-                function failure(response)
-                {
-                    alert(response.status + ' ' + response.statusText);
-                }
-            );
+                });
         };
 
         model.authenticateUser = function(user)
@@ -38,15 +33,11 @@
 
             SessionService.authenticateUser(credentials)
                 .then(
-                function success(user)
+                function success(response)
                 {
-                    if(user.data)
-                    {
-                        $rootScope.setCurrentUser(user.data);
-                        $state.go('eggly.categories');
-                    }
-                },
-                handleError)
+                    $rootScope.setCurrentUser(response.data);
+                    $state.go('eggly.categories');
+                })
         };
 
         model.signUpUser = function(newUser)
@@ -56,15 +47,11 @@
 
             SessionService.signUpUser(newCredentials)
                 .then(
-                function success(user)
+                function success(response)
                 {
-                    if(user.data)
-                    {
-                        $rootScope.setCurrentUser(user.data);
-                        $state.go('eggly.categories');
-                    }
-                },
-                handleError)
+                    $rootScope.setCurrentUser(response.data);
+                    $state.go('eggly.categories');
+                })
 
         };
 
@@ -77,15 +64,9 @@
                     console.log(response);
                     $rootScope.setCurrentUser(null);
                     $state.go('eggly.signin')
-                },
-                handleError
+                }
             )
         };
-
-        function handleError(response)
-        {
-            alert('Error: ' + response.data);
-        }
 
 
     });
@@ -97,42 +78,41 @@
         sessionService.getSession = function()
         {
             return $http.get(API_URL + '/userSession')
+                .error(
+                function failure(data, status)
+                {
+                    alert('Could not retrieve session.');
+                    console.log('Could not retrieve session, http status: ' + status);
+                });
         };
 
         sessionService.authenticateUser = function(credentials)
         {
             return $http
                 .post(API_URL + '/login', credentials)
-                .success(
-                function success(response)
-                    {
-                        return response;
-                    })
                 .error(
-                function failure(response)
-                    {
-                        var educationalMessage = 'Educational: Maybe could use AngularJs interceptors to handle http response codes with more care.' +
-                            'But for now will use angular constants to handle the statuses. ';
-                        alert(response.status + ' ' + response.statusText);
-                        console.log(educationalMessage);
-                        return null;
-                    });
+                function failure(data, status)
+                {
+                    alert('Username or password is incorrect. Please try again.');
+                    console.log('Authentication failed, http status: ' + status);
+
+
+                    var educationalMessage = 'Educational: Maybe could use AngularJs interceptors to handle http response codes with more care.' +
+                        'But for now will use angular constants to handle the statuses. ';
+                    console.log(educationalMessage);
+                });
         };
 
         sessionService.signUpUser = function(newCredentials)
         {
             return $http
                 .post(API_URL + '/signUp', newCredentials)
-                .success(
-                function success(response) {
-                    return response;
-                })
                 .error(
-                function failure(response)
-                    {
-                        alert('Failed to create user, http status is: ' + response.status + ' ' + response.statusText);
-                        return null;
-                    }
+                function failure(data, status)
+                {
+                    alert('Failed to create user, try a different username.');
+                    console.log('Failed to create user, try a different username. Http status: ' + status);
+                }
             );
         };
 
@@ -140,17 +120,12 @@
         {
             return $http
                 .get(API_URL + '/logout', user)
-                .success(
-                function success(response)
-                    {
-                        return response;
-                    })
                 .error(
-                function failure(response)
-                    {
-                        alert(response.status + ' ' + response.statusText);
-                        return null;
-                    });
+                function failure(data, status)
+                {
+                    alert('Oh no! We like you too much.. Could not log out.');
+                    console.log('Could not log out, http status: ' + status);
+                });
         };
 
         return sessionService;

@@ -96,12 +96,6 @@ exports.api =  function() {
 
     //===============ROUTES===============
 
-    //app.use(function(req, res, next) {
-    //    res.header("Access-Control-Allow-Origin", "*");
-    //    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //    next();
-    //});
-
     //displays homepage
     app.get('/', function (request, response) {
         response.sendFile(rootStaticDirectory + '/index.start.html');
@@ -109,14 +103,13 @@ exports.api =  function() {
 
     //sends the request through our local login/signin strategy, and if successful redirects to /userSession, otherwise stays in signin page
     app.post('/login',
-        passport.authenticate('local-signin', { successRedirect: '/userSession'}
-            )
+        passport.authenticate('local-signin',
+            { successRedirect: '/userSession'})
     );
 
     //sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
     app.post('/signUp', passport.authenticate('local-signup', {
-            successRedirect: '/userSession',
-            failureRedirect: '/signUpFail'})
+            successRedirect: '/userSession'})
     );
 
     app.get('/signUpFail', function(request, response)
