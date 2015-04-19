@@ -6,7 +6,7 @@ Local setup instructions:
 
 1) Download zip or clone this repository to your favorite folder in your system. 
 
-2) In the terminal, go to root directory of the project and run 'npm install'. This should add content to a package called node_modules in the root directory of the project. 
+2) In the terminal, go to root directory of the project and run 'npm install'. This should create a package called node_modules in the root directory of the project. 
 
 3) Again from the terminal, from the root direcotory, go to <root>/src/frontend. Run the command 'bower intall', this will create a package called bower_components in directory <root>/src/frontend. 
 
