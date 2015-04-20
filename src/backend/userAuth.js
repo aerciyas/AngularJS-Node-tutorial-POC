@@ -2,12 +2,37 @@ var bcrypt = require('bcryptjs'),
     Q = require('q'),
     mysql = require('mysql');
 
-var connection = mysql.createConnection({
+var db_config = {
     host: 'us-cdbr-iron-east-02.cleardb.net',
     user: 'b341eb1890fae6',
     password: '6ddac6d3',
     database: 'heroku_81ed279db9f7798'
-});
+};
+
+var connection;
+
+function handleDisconnect() {
+    connection = mysql.createConnection(db_config);
+
+
+    connection.connect(function(err) {
+        if(err) {
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 2000);
+        }
+    });
+
+    connection.on('error', function(err) {
+        console.log('db error', err);
+        if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+            handleDisconnect();
+        } else {
+            throw err;
+        }
+    });
+}
+
+handleDisconnect();
 
 var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
 
