@@ -8,23 +8,21 @@ Local setup instructions:
 
 2) In the terminal, go to root directory of the project and run 'npm install'. This should create a package called node_modules in the root directory of the project. 
 
-3) Again from the terminal, from the root direcotory, go to <root>/src/frontend. Run the command 'bower intall', this will create a package called bower_components in directory <root>/src/frontend. 
-
-4) You will have to set up your own mysql database for the login functionality :( . Otherwise all you will see will be the login page. When you set up your database, do the following below. 
+3) You will have to set up your own mysql database for the login functionality :( . Otherwise all you will see will be the login page. When you set up your database, do the following below. 
   
-  4.1) Find the file <root>/src/backend/userAuth.js
+  3.1) Find the file <root>/src/backend/userAuth.js
   
-  4.2) In there you will find default connection metadata for your own mysql database, something like as follows:
+  3.2) In there you will find default connection metadata for your own mysql database, something like as follows:
   
   __________________________________________________
   ... some javascript code ...
   
-  var connection = mysql.createConnection({
-    host: 'your host name',
-    user: 'your user name',
-    password: 'your password',
-    database: 'your database name'
-  });
+  var db_config = {
+      host: 'your host name',
+      user: 'your user name',
+      password: 'your password',
+      database: 'your database name'
+  };
   
   ... some javascript code ... 
    ___________________________________________________
@@ -33,7 +31,7 @@ Local setup instructions:
    you have for your own mysql database. 
    
    
-   4.3) In your mysql database, run the following to create the user authentication table used in this
+   3.3) In your mysql database, run the following to create the user authentication table used in this
    project. 
    ___________________________________________________
    
@@ -45,4 +43,4 @@ Local setup instructions:
   UNIQUE INDEX `username_UNIQUE` (`username` ASC));
    ___________________________________________________
 
-5) Now, back in your terminal, go to the root directory of this project and run 'node src/backend/server.js'. You are done! You should have a localhost running at http://localhost:3000/#/. 
+4) Now, back in your terminal, go to the root directory of this project and run 'node src/backend/server.js'. You are done! You should have a localhost running at http://localhost:3000/#/. 
