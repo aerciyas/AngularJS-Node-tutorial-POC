@@ -118,6 +118,7 @@ exports.api =  function() {
 
     ////logs user out of site, deleting them from the session, and returns to homepage
     app.get('/logout', function(request, response){
+        console.log('Getting username before logging out.');
         var name = request.user.username;
         console.log("LOGGIN OUT " + request.user.username);
         request.logout();
