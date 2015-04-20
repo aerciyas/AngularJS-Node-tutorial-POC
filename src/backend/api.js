@@ -129,8 +129,9 @@ exports.api =  function() {
     //how very nice of a trick :)D
     app.get('/userSession', function(request, response)
     {
-        response.json(request.session.passport.user)
-    });
+        console.log("Getting user from session...");
+        response.json(request.session.passport.user);
+        console.log("User fetch from session successful!");    });
 
 
     /*
