@@ -3,10 +3,10 @@ var bcrypt = require('bcryptjs'),
     mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'your host name',
-    user: 'your user name',
-    password: 'your password',
-    database: 'your database name'
+    host: 'us-cdbr-iron-east-02.cleardb.net',
+    user: 'b341eb1890fae6',
+    password: '6ddac6d3',
+    database: 'heroku_81ed279db9f7798'
 });
 
 var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
