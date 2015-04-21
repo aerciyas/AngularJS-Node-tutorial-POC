@@ -4,10 +4,10 @@ var bcrypt = require('bcryptjs'),
     async = require('async');
 
 var db_config = {
-    host: 'us-cdbr-iron-east-02.cleardb.net',
-    user: 'b341eb1890fae6',
-    password: 'a3f067599033a17',
-    database: 'heroku_81ed279db9f7798'
+    host: 'your host name',
+    user: 'your user name',
+    password: 'your password',
+    database: 'your database name'
 };
 
 var connection;
