@@ -46,7 +46,7 @@ function authenticateUser(username, password, deferred)
 
             function(callback)
             {
-                connection.query('SELECT username FROM local_user WHERE usernames = ?',
+                connection.query('SELECT username FROM local_user WHERE username = ?',
                     username,
                     function(err, results)
                     {
