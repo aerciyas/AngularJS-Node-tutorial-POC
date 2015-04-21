@@ -37,7 +37,7 @@ handleDisconnect();
 
 var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
 var userNotFoundErrorMessage = "Could not find username in db for signin.";
-var maydayError = 'Error error mayday mayday, something is incorrect. Error was: ';
+var maydayError = 'Error mayday, something is incorrect. Error was: ';
 
 function authenticateUser(username, password, deferred)
 {
