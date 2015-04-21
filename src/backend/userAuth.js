@@ -1,6 +1,7 @@
 var bcrypt = require('bcryptjs'),
     Q = require('q'),
-    mysql = require('mysql');
+    mysql = require('mysql'),
+    async = require('async');
 
 var db_config = {
     host: 'your host name',
@@ -35,32 +36,47 @@ function handleDisconnect() {
 handleDisconnect();
 
 var unexpectedErrorMessage = "This is weird, no error was expected. A user query is wrong, or possibly the db isn't up and running.";
+var userNotFoundErrorMessage = "Could not find username in db for signin.";
+var maydayError = 'Error error mayday mayday, something is incorrect. Error was: ';
 
 function authenticateUser(username, password, deferred)
 {
-    connection.query('SELECT username FROM local_user WHERE username = ?',
-        username,
-        function(err, results)
-        {
-            if(err)
+
+    async.series([
+
+            function(callback)
             {
-                console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
-                deferred.resolve(false);
-            }
-            else if(results.length == 0)
-            {
-                console.log("Could not find username in db for signin.");
-                deferred.resolve(false);
-            }
-            else
+                connection.query('SELECT username FROM local_user WHERE usernames = ?',
+                    username,
+                    function(err, results)
+                    {
+                        if(err)
+                        {
+                            deferred.resolve(false);
+                            callback(new Error(unexpectedErrorMessage + " Here is the error: " + err.message), null);
+                        }
+                        else if(results.length == 0)
+                        {
+                            deferred.resolve(false);
+                            callback(new Error(userNotFoundErrorMessage), null);
+                        }
+                        else
+                        {
+                            var username = results[0];
+                            callback(null, username)
+                        }
+                    });
+
+            },
+            function(callback)
             {
                 connection.query('SELECT password FROM local_user WHERE username = ?',
                     username,
                     function(err, results) {
                         if(err)
                         {
-                            console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
                             deferred.resolve(false);
+                            callback(new Error(unexpectedErrorMessage + " Here is the error: " + err.message), null)
                         }
                         else
                         {
@@ -69,23 +85,35 @@ function authenticateUser(username, password, deferred)
                             console.log('hash: ' + hash);
                             console.log('password: ' + password);
                             console.log(bcrypt.compareSync(password, hash));
-                            if (bcrypt.compareSync(password, hash))
+                            if (bcrypt.compareSync(password, hash)) //success
                             {
                                 var user = {
                                     "username": username,
                                     "password": hash
                                 };
                                 deferred.resolve(user);
+                                callback(null, password);
                             }
                             else
                             {
-                                console.log("Passwords don't match!");
                                 deferred.resolve(false);
+                                callback(new Error("Passwords don't match!"), null);
                             }
                         }
                     });
             }
 
+        ],
+        function(err, results)
+        {
+            if(err)
+            {
+                console.log(maydayError + err.message)
+            }
+            else
+            {
+                console.log('User authenticated. Username: ' + results[0] + ', password: ' + results[1]);
+            }
         });
 
 }
@@ -93,19 +121,34 @@ function authenticateUser(username, password, deferred)
 
 function signUpUser(username, password, deferred)
 {
-    connection.query('SELECT username FROM local_user WHERE username = ?', //query check if user exists, if no add
-        username,
-        function(err, results){
-            if(err)
-            {
-                console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
-                deferred.resolve(false);
-            }
-            if(results.length == 0)
-            {
-                console.log('Username is free for use');
 
-                var insertUserQuery = 'INSERT INTO local_user(username, password) VALUES (?)'; //query to put user in database
+    async.series([
+
+            function(callback)
+            {
+                connection.query('SELECT username FROM local_user WHERE username = ?',
+                    username,
+                    function(err, results) {
+                        if (err)
+                        {
+                            deferred.resolve(false);
+                            callback(new Error(unexpectedErrorMessage + " Here is the error: " + err.message), null)
+                        }
+                        if(results.length == 0)
+                        {
+                            console.log('Username ' + username + ' is free for use');
+                            callback(null, username);
+                        }
+                        else
+                        {
+                            deferred.resolve(false);
+                            callback(new Error('Username already exists.'), null);
+                        }
+                    });
+            },
+            function(callback)
+            {
+                var insertUserQuery = 'INSERT INTO local_user(username, password) VALUES (?)';
                 var hashedPassword = bcrypt.hashSync(password, 8);
                 var userCredentials = [[username, hashedPassword]];
                 connection.query(
@@ -114,8 +157,8 @@ function signUpUser(username, password, deferred)
                     function(err){
                         if(err)
                         {
-                            console.log(unexpectedErrorMessage + " Here is the error: " + err.message);
                             deferred.resolve(false);
+                            callback(new Error(unexpectedErrorMessage + " Here is the error: " + err.message), null)
                         }
                         else//success
                         {
@@ -124,20 +167,27 @@ function signUpUser(username, password, deferred)
                                 "username": username,
                                 "password": hash
                             };
-                            console.log("USER: " + user);
                             deferred.resolve(user);
+                            callback(null, user);
                         }
                     });
             }
+
+        ],
+        function(err, results)
+        {
+            if(err)
+            {
+                console.log(maydayError + err.message)
+            }
             else
             {
-                console.log('Username already exists.');
-                deferred.resolve(false);
+                console.log('User ' + results[1].username + ' is successfully signed up!')
             }
         });
+
 }
 
-//used in local-signup strategy
 exports.localReg = function (username, password) {
     var deferred = Q.defer();
 
