@@ -1,6 +1,3 @@
-//var express = require('express');
-//var app = express();
-
 var Api = require('./api.js').api();
 
 var server = Api.listen(process.env.PORT || 3000, function () {
