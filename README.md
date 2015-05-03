@@ -8,7 +8,7 @@ Local setup instructions:
 
 2) In the terminal, go to root directory of the project and run 'npm install'. This should create a package called node_modules in the root directory of the project. 
 
-3) You will have to set up your own mysql database for the login functionality :( . Otherwise all you will see will be the login page. When you set up your database, do the following below. 
+3) To configure your clone of the source with your MySQL database, do the folloing.  
   
   3.1) Find the file <root>/src/backend/userAuth.js
   
