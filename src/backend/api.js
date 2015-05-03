@@ -8,7 +8,7 @@ var express = require('express'),
     LocalStrategy = require('passport-local'),
     morgan = require('morgan'),             // log requests to the console (express4)
     userAuth = require('./userAuth.js'), //userAuth file contains our helper functions for our Passport and database work
-    cors = require('cors'); // cross origin resource module to allow api calls from browser (isn't intended as cross scripting security, need something additional for that)
+    cors = require('cors'); // to allow api calls from browser (isn't intended as cross scripting security, would need something additional for that)
 
 
 exports.api =  function() {
@@ -16,7 +16,6 @@ exports.api =  function() {
     var app = express();
 
     //===============PASSPORT===============
-    // Passport session setup.
     passport.serializeUser(function(user, done) {
         console.log("serializing " + user.username);
         done(null, user);
@@ -27,9 +26,8 @@ exports.api =  function() {
         done(null, obj);
     });
 
-    //This section will contain our work with Passport
     passport.use('local-signin', new LocalStrategy(
-        {passReqToCallback : true}, //allows us to pass back the request to the callback
+        {passReqToCallback : true},
         function(request, username, password, done) {
             userAuth.localAuth(username, password)
                 .then(function (user) {
@@ -40,7 +38,7 @@ exports.api =  function() {
                     }
                     if (!user) {
                         console.log("COULD NOT LOG IN");
-                        request.session.error = 'Could not log user in. Please try again.'; //inform user could not log them in
+                        request.session.error = 'Could not log user in. Please try again.'; 
                         return done(null, user);
                     }
                 })
@@ -50,9 +48,8 @@ exports.api =  function() {
         }
     ));
 
-     //Use the LocalStrategy within Passport to register/"signup" users.
      passport.use('local-signup', new LocalStrategy(
-         {passReqToCallback : true}, //allows us to pass back the request to the callback
+         {passReqToCallback : true}, 
          function(request, username, password, done)
          {
              userAuth.localReg(username, password)
@@ -67,7 +64,7 @@ exports.api =  function() {
                          if (!user)
                          {
                              console.log("COULD NOT REGISTER");
-                             request.session.error = 'That username is already in use, please try a different one.'; //inform user could not log them in
+                             request.session.error = 'That username is already in use, please try a different one.'; 
                              return done(null, user);
                          }
                     })
@@ -79,11 +76,10 @@ exports.api =  function() {
 
 
     //===============EXPRESS================
-    // Configure Express
     var rootStaticDirectory = __dirname.replace("backend", "frontend");
-    app.use(express.static(rootStaticDirectory));// set the static files location /public/img will be /img for users
+    app.use(express.static(rootStaticDirectory));
     app.use(cors());
-    app.use(morgan('dev')); // log every request to the console
+    app.use(morgan('dev')); 
     app.use(methodOverride());
     app.use(logger('combined'));
     app.use(cookieParser());
@@ -95,28 +91,24 @@ exports.api =  function() {
 
     //===============ROUTES===============
 
-    //displays homepage
     app.get('/', function (request, response) {
         response.sendFile(rootStaticDirectory + '/index.start.html');
     });
 
-    //sends the request through our local login/signin strategy, and if successful redirects to /userSession, otherwise stays in signin page
     app.post('/login',
         passport.authenticate('local-signin',
             { successRedirect: '/userSession'})
     );
 
-    //sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
     app.post('/signUp', passport.authenticate('local-signup', {
             successRedirect: '/userSession'})
     );
 
     app.get('/signUpFail', function(request, response)
     {
-        response.json(request.session); // NOTE, how this has all session data(COOKIE included)!
+        response.json(request.session);
     });
 
-    ////logs user out of site, deleting them from the session, and returns to homepage
     app.get('/logout', function(request, response){
         console.log('Getting username before logging out.');
         var name = request.user.username;
@@ -126,37 +118,12 @@ exports.api =  function() {
         request.session.notice = "You have successfully been logged out " + name + "!";
     });
 
-    //how very nice of a trick :)D
     app.get('/userSession', function(request, response)
     {
         console.log("Getting user from session...");
         response.json(request.session.passport.user);
-        console.log("User fetch from session successful!");    });
-
-
-    /*
-        **
-        * Test to play with node api
-        *
-
-         app.post('/test', function(request, response){
-             var name = request.body.name;
-             var body = request.body.body;
-             var session = request.session;
-             console.log("name: " + name);
-             console.log("body: " + body);
-             console.log("session: " + session);
-             console.log(request.session);
-
-             function test()
-             {
-             return 'hello world';
-             }
-             response.json({hello: test()});
-         });
-     */
-
-
+        console.log("User fetch from session successful!");    
+    });
 
     return app;
 };
