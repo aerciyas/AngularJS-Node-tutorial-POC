@@ -1,6 +1,6 @@
 # dragonrating
 
-Follow below for local setup! 
+AngularJS-Node POC with real login using MySQL database. Follow below for local setup! 
 
 Local setup instructions:
 
